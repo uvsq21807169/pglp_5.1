@@ -2,7 +2,7 @@ package uvsq.pglp_5_1;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public final class Personnels implements GroupePersonnes, Serializable{
+public final class Personnels implements GroupePersonnes, Serializable {
 
 	private String nom;
 	private String prenom;

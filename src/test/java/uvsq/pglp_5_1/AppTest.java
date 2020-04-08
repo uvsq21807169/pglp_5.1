@@ -46,30 +46,31 @@ public class AppTest
         		.add_tel(3)
         		.function("directeur")
         		.build();
+    	CompositePersonnels g1 = new CompositePersonnels(1);
+        g1.add(person1);
 
-        // save the object to file
-        FileOutputStream fos = null;
         try (ObjectOutputStream out = 
         		new ObjectOutputStream(
         				new FileOutputStream(filename))) {
-            out.writeObject(person1);
+            out.writeObject(g1);
 
         } catch (Exception ex) {
             ex.printStackTrace();
         }
         
         Personnels person2 = null;
-        FileInputStream fis = null;
-        ObjectInputStream in = null;
-        try {
-            fis = new FileInputStream(filename);
-            in = new ObjectInputStream(fis);
-            person2 = (Personnels) in.readObject();
-            in.close();
+        CompositePersonnels g2 = new CompositePersonnels(1);
+        g1.add(person2);
+        
+        try (ObjectInputStream in = new ObjectInputStream(
+        		new FileInputStream(filename))){
+			
+			g2 = (CompositePersonnels) in.readObject();
+            
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
-        
-        assertTrue(person1.getName().equals(person2.getName()));
+        } 
+        g1.getPersonnes().get(0).print();
+        //assertTrue(g1.getPersonnes());
     }
 }

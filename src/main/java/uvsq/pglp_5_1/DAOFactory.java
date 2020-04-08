@@ -2,7 +2,7 @@ package uvsq.pglp_5_1;
 
 public class DAOFactory {
 
-	public static DAO<Personnels> getPersonneDAO(){
+	public static DAO<CompositePersonnels> getPersonneDAO(){
 		return new PersonneDAO();
 	}
 
