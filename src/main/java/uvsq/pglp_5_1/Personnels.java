@@ -2,7 +2,7 @@ package uvsq.pglp_5_1;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public final class Personnels implements GroupePersonnes, Serializable{
+public final class Personnels implements GroupePersonnes{
 
 	private String nom;
 	private String prenom;
@@ -48,6 +48,10 @@ public final class Personnels implements GroupePersonnes, Serializable{
 	
 	public void print() {
 		System.out.println(nom);
+	}
+	
+	public String getName() {
+		return nom;
 	}
 
 	public ArrayList<GroupePersonnes> getPersonnes() {
