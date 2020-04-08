@@ -66,7 +66,6 @@ public class AppTest
             in = new ObjectInputStream(fis);
             person2 = (Personnels) in.readObject();
             in.close();
-            person2.print();
         } catch (Exception ex) {
             ex.printStackTrace();
         }
