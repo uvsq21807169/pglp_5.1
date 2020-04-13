@@ -2,6 +2,7 @@ package uvsq.pglp_5_1;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
@@ -12,14 +13,17 @@ public class PersonneDAO implements DAO<CompositePersonnels>{
 	@Override
 	public CompositePersonnels create(CompositePersonnels obj) {
 
-        try (ObjectOutputStream out = 
-        		new ObjectOutputStream(
-        				new FileOutputStream(filename))) {
+        try {
+        	ObjectOutputStream out = 
+            		new ObjectOutputStream(
+            				new FileOutputStream(filename));
             out.writeObject(obj);
+            
+            out.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        } 
         
 		return obj;
 	}
@@ -29,11 +33,12 @@ public class PersonneDAO implements DAO<CompositePersonnels>{
 		
 		CompositePersonnels person = null;
 
-		try (ObjectInputStream in = new ObjectInputStream(
-        		new FileInputStream(filename))){
+		try {
+			ObjectInputStream in = new ObjectInputStream(
+        		new FileInputStream(filename));
 			
 			person = (CompositePersonnels) in.readObject();
-            
+            in.close();
         } catch (Exception ex) {
             ex.printStackTrace();
         } 
@@ -48,15 +53,17 @@ public class PersonneDAO implements DAO<CompositePersonnels>{
 
 	@Override
 	public void delete(CompositePersonnels obj) {
-		
-		try (ObjectOutputStream out = 
-        		new ObjectOutputStream(
-        				new FileOutputStream(filename))) {
+
+		try {
+			ObjectOutputStream out = 
+	        		new ObjectOutputStream(
+	        				new FileOutputStream(filename));
             out.writeObject(null);
+            out.close();
 
         } catch (Exception ex) {
             ex.printStackTrace();
-        }
+        } 
 		
 	}
 
